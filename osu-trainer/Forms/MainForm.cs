@@ -735,6 +735,13 @@ namespace osu_trainer
                 else if (gameLoaded == null)
                     gameLoaded = true;
 
+                // remember where osu! lives: DT-aligned audio needs its bass_fx.dll
+                if (SongSpeedChanger.OsuDirectory == null)
+                {
+                    try { SongSpeedChanger.OsuDirectory = Path.GetDirectoryName(processes[0].MainModule.FileName); }
+                    catch { } // access denied etc. - SongSpeedChanger falls back to the Songs folder's parent
+                }
+
                 if (userSongsFolder == null || userSongsFolder == "")
                 {
                     // Try to get osu songs folder

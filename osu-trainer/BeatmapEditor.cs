@@ -826,7 +826,9 @@ namespace osu_trainer
             {
                 string bpm = map.Bpm.ToString("0");
                 map.Version += $" {multiplier:0.##}x ({bpm}bpm)";
-                map.AudioFilename = $"{Path.GetFileNameWithoutExtension(map.AudioFilename)} {multiplier:0.000}x withDT";
+                // DT-aligned audio gets its own name so an old, unaligned file of the same rate isn't reused
+                string dtTag = SongSpeedChanger.CanAlignToDT ? "withDT aligned" : "withDT";
+                map.AudioFilename = $"{Path.GetFileNameWithoutExtension(map.AudioFilename)} {multiplier:0.000}x {dtTag}";
                 if (changePitch && Math.Abs(multiplier - 1M) > 0.001M)
                     map.AudioFilename += $" (pitch {(multiplier < 1 ? "lowered" : "raised")})";
                 map.AudioFilename += ".mp3";
