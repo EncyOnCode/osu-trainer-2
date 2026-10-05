@@ -1,4 +1,4 @@
-github repository name: FunOrange/osu-trainer
+github repository name: EncyOnCode/osu-trainer-2
 application name: osu-trainer.exe
-current version: 1.8.0
+current version: 1.9.0
 check for updates: true
